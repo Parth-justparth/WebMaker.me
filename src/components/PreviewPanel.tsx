@@ -114,12 +114,28 @@ export function PreviewPanel({ projectId, runtimeError, onDismiss, onFix }: Prev
       {/* Preview Area */}
       <div className="flex-1 bg-[#1a1a1a]">
         {previewUrl ? (
-          <iframe
-            src={previewUrl}
-            className="w-full h-full border-0"
-            title="Preview"
-            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-          />
+          window.location.protocol === 'https:' && previewUrl.startsWith('http:') ? (
+            <div className="flex flex-col items-center justify-center h-full text-center p-8 max-w-md mx-auto">
+              <div className="w-16 h-16 rounded-xl bg-muted/20 flex items-center justify-center mb-4">
+                <ExternalLink className="w-8 h-8 text-muted-foreground/50" />
+              </div>
+              <h3 className="text-lg font-medium mb-2">Mixed Content Blocked</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Your preview is running on an HTTP server, but this editor is secured with HTTPS. Your browser has blocked the preview from loading inside this window.
+              </p>
+              <Button onClick={() => window.open(previewUrl, "_blank")} className="gap-2">
+                <ExternalLink className="w-4 h-4" />
+                Open Preview in New Tab
+              </Button>
+            </div>
+          ) : (
+            <iframe
+              src={previewUrl}
+              className="w-full h-full border-0 bg-white"
+              title="Preview"
+              sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+            />
+          )
         ) : (
           <div className="flex flex-col items-center justify-center h-full text-center p-8">
             <div className="w-16 h-16 rounded-xl bg-muted/20 flex items-center justify-center mb-4">
