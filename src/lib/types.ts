@@ -113,10 +113,13 @@ export interface Plan {
   maxTokensPerDay: number;
   maxPreviews: number;
   unlimitedAi: boolean;
+  active?: boolean;
 }
 
 export interface Subscription {
   status: string;
-  plan: Plan;
+  plan: Plan & { price?: string };
+  currentPeriodEnd?: string;
+  tokensUsedThisCycle?: number;
 }
 
