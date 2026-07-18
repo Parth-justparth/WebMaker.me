@@ -419,5 +419,14 @@ export const api = {
     });
     if (!response.ok) throw new Error("Checkout failed");
     return response.json();
+  },
+
+  async createPortalSession(): Promise<{ url: string }> {
+    const response = await fetch(`${BASE_URL}/api/v1/account/api/payments/portal`, {
+      method: "POST",
+      headers: getAuthHeaders(),
+    });
+    if (!response.ok) throw new Error("Failed to create portal session");
+    return response.json();
   }
 };

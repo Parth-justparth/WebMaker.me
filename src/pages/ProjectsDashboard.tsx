@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Plus, LogOut, Search, Folder, Loader2, MoreVertical, Trash, Download, Edit, Sparkles } from "lucide-react";
+import { Plus, LogOut, Search, Folder, Loader2, MoreVertical, Trash, Download, Edit, Sparkles, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -139,6 +140,16 @@ export function ProjectsDashboard() {
         navigate("/login");
     };
 
+    const handleManageSubscription = async () => {
+        try {
+            const { url } = await api.createPortalSession();
+            window.location.href = url;
+        } catch (error) {
+            console.error("Failed to create portal session:", error);
+            toast({ title: "Error", description: "Failed to open subscription settings", variant: "destructive" });
+        }
+    };
+
     const filteredProjects = projects.filter((project) =>
         project.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -154,41 +165,48 @@ export function ProjectsDashboard() {
                         </div>
                         Project Companion
                     </div>
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full">
-                                <Avatar className="h-9 w-9">
-                                    <AvatarFallback className="bg-primary/10 text-primary font-semibold">
-                                        {(() => {
-                                            const userInfo = getUserInfo();
-                                            if (userInfo?.name) {
-                                                return userInfo.name.charAt(0).toUpperCase();
-                                            }
-                                            return "U";
-                                        })()}
-                                    </AvatarFallback>
-                                </Avatar>
-                            </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end" className="w-56">
-                            <div className="flex flex-col space-y-1 p-2">
-                                <p className="text-sm font-medium leading-none">
-                                    {getUserInfo()?.name || "User"}
-                                </p>
-                                <p className="text-xs leading-none text-muted-foreground">
-                                    {getUserInfo()?.username || ""}
-                                </p>
-                            </div>
-                            <DropdownMenuItem onClick={() => navigate("/plans")} className="cursor-pointer">
-                                <Sparkles className="w-4 h-4 mr-2 text-indigo-500" />
-                                Upgrade Plan
-                            </DropdownMenuItem>
-                            <DropdownMenuItem onClick={handleLogout} className="text-red-600 focus:text-red-600 cursor-pointer">
-                                <LogOut className="w-4 h-4 mr-2" />
-                                Sign Out
-                            </DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
+                    <div className="flex items-center gap-2">
+                        <ThemeToggle />
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full">
+                                    <Avatar className="h-9 w-9">
+                                        <AvatarFallback className="bg-primary/10 text-primary font-semibold">
+                                            {(() => {
+                                                const userInfo = getUserInfo();
+                                                if (userInfo?.name) {
+                                                    return userInfo.name.charAt(0).toUpperCase();
+                                                }
+                                                return "U";
+                                            })()}
+                                        </AvatarFallback>
+                                    </Avatar>
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end" className="w-56">
+                                <div className="flex flex-col space-y-1 p-2">
+                                    <p className="text-sm font-medium leading-none">
+                                        {getUserInfo()?.name || "User"}
+                                    </p>
+                                    <p className="text-xs leading-none text-muted-foreground">
+                                        {getUserInfo()?.username || ""}
+                                    </p>
+                                </div>
+                                <DropdownMenuItem onClick={() => navigate("/plans")} className="cursor-pointer">
+                                    <Sparkles className="w-4 h-4 mr-2 text-indigo-500" />
+                                    Upgrade Plan
+                                </DropdownMenuItem>
+                                <DropdownMenuItem onClick={handleManageSubscription} className="cursor-pointer">
+                                    <Settings className="w-4 h-4 mr-2 text-muted-foreground" />
+                                    Manage Subscription
+                                </DropdownMenuItem>
+                                <DropdownMenuItem onClick={handleLogout} className="text-red-600 focus:text-red-600 cursor-pointer">
+                                    <LogOut className="w-4 h-4 mr-2" />
+                                    Sign Out
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    </div>
                 </div>
             </header>
 

@@ -11,26 +11,30 @@ import Signup from "./pages/Signup";
 import NotFound from "./pages/NotFound";
 import PlansPage from "./pages/Plans";
 
+import { ThemeProvider } from "./components/ThemeProvider";
+
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/login" element={<LoginModal />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/plans" element={<PlansPage />} />
-          <Route path="/projects" element={<ProjectsDashboard />} />
-          <Route path="/projects/:projectId" element={<ProjectView />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <ThemeProvider defaultTheme="dark" attribute="class" enableSystem>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/login" element={<LoginModal />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/plans" element={<PlansPage />} />
+            <Route path="/projects" element={<ProjectsDashboard />} />
+            <Route path="/projects/:projectId" element={<ProjectView />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 

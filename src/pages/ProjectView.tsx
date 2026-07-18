@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Code, Sparkles, LogOut, RotateCcw, Maximize2, RefreshCw, MoreVertical, Trash, Download, Edit } from "lucide-react";
+import { Code, Sparkles, LogOut, RotateCcw, Maximize2, RefreshCw, MoreVertical, Trash, Download, Edit, ArrowLeft } from "lucide-react";
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
 import { ChatPanel, ChatMessage } from "@/components/ChatPanel";
 import { CodePanel } from "@/components/CodePanel";
@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { api, isAuthenticated, removeAuthToken, getUserInfo, removeUserInfo } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -288,6 +289,16 @@ Please analyze this error and fix the code to resolve it.`;
       {/* Header */}
       <header className="h-12 shrink-0 border-b border-border/50 bg-panel flex items-center justify-between px-3">
         <div className="flex items-center gap-2">
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            onClick={() => navigate("/projects")}
+            className="text-muted-foreground hover:text-foreground mr-2 h-8 px-2"
+          >
+            <ArrowLeft className="w-4 h-4 mr-1" />
+            <span className="hidden sm:inline">Projects</span>
+          </Button>
+          <div className="w-px h-4 bg-border/50 mr-2"></div>
           {project ? (
             <>
               <div
@@ -359,6 +370,7 @@ Please analyze this error and fix the code to resolve it.`;
         </div>
 
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           {project && (
             <div className="flex items-center gap-2 px-2 py-1 bg-muted/30 rounded-full border border-border/50">
               <Avatar className="h-6 w-6 border border-primary/20">
