@@ -115,7 +115,7 @@ export function PreviewPanel({ projectId, runtimeError, onDismiss, onFix }: Prev
       <div className="flex-1 bg-[#1a1a1a]">
         {previewUrl ? (
           <iframe
-            src={window.location.protocol === 'https:' ? `/preview/${projectId}/` : previewUrl}
+            src={window.location.protocol === 'https:' ? `/preview/${projectId}/?t=${Date.now()}` : previewUrl}
             className="w-full h-full border-0 bg-white"
             title="Preview"
             sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"
