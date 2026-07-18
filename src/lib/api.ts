@@ -417,8 +417,14 @@ export const api = {
       headers: { "Content-Type": "application/json", ...getAuthHeaders() },
       body: JSON.stringify({ planId }),
     });
-    if (!response.ok) throw new Error("Checkout failed");
-    return response.json();
+    if (!response.ok) {
+      const err = await response.text();
+      console.error("Checkout error:", response.status, err);
+      throw new Error(`Checkout failed: ${response.status}`);
+    }
+    const data = await response.json();
+    // Backend returns { checkoutUrl }, normalize to { url }
+    return { url: data.checkoutUrl ?? data.url };
   },
 
   async createPortalSession(): Promise<{ url: string }> {
@@ -426,7 +432,13 @@ export const api = {
       method: "POST",
       headers: getAuthHeaders(),
     });
-    if (!response.ok) throw new Error("Failed to create portal session");
-    return response.json();
+    if (!response.ok) {
+      const err = await response.text();
+      console.error("Portal session error:", response.status, err);
+      throw new Error(`Failed to create portal session: ${response.status}`);
+    }
+    const data = await response.json();
+    // Backend returns { portalUrl }, normalize to { url }
+    return { url: data.portalUrl ?? data.url };
   }
 };

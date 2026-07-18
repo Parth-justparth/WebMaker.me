@@ -143,10 +143,19 @@ export function ProjectsDashboard() {
     const handleManageSubscription = async () => {
         try {
             const { url } = await api.createPortalSession();
-            window.location.href = url;
-        } catch (error) {
+            if (url) {
+                window.location.href = url;
+            } else {
+                toast({ title: "No subscription found", description: "Please select a plan first before managing your subscription.", variant: "destructive" });
+            }
+        } catch (error: any) {
             console.error("Failed to create portal session:", error);
-            toast({ title: "Error", description: "Failed to open subscription settings", variant: "destructive" });
+            // 400 = user has no stripeCustomerId (hasn't subscribed yet)
+            if (error.message?.includes("400")) {
+                toast({ title: "No active subscription", description: "You don't have an active subscription yet. Click 'Upgrade Plan' to get started!", variant: "destructive" });
+            } else {
+                toast({ title: "Error", description: "Failed to open subscription settings. Please try again.", variant: "destructive" });
+            }
         }
     };
 
