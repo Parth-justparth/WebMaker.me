@@ -410,7 +410,11 @@ Please analyze this error and fix the code to resolve it.`;
               <Button onClick={() => navigate("/plans")} variant="outline" size="sm" className="h-8 text-xs">
                 Upgrade
               </Button>
-              <Button size="sm" className="h-8 text-xs bg-primary hover:bg-primary/90">
+              <Button 
+                size="sm" 
+                className="h-8 text-xs bg-primary hover:bg-primary/90"
+                onClick={handleDownloadProject}
+              >
                 Publish
               </Button>
             </>
