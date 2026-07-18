@@ -1,12 +1,12 @@
 {
   "rewrites": [
     {
-      "source": "/preview/:projectId/(.*)",
-      "destination": "http://proxy.previews.98.70.247.4.nip.io/preview/:projectId/$1"
+      "source": "/preview/:projectId/:path*",
+      "destination": "http://proxy.previews.98.70.247.4.nip.io/preview/:projectId/:path*"
     },
     {
-      "source": "/api/(.*)",
-      "destination": "http://api.98.70.247.4.nip.io/api/$1"
+      "source": "/api/:path*",
+      "destination": "http://api.98.70.247.4.nip.io/api/:path*"
     },
     {
       "source": "/(.*)",
