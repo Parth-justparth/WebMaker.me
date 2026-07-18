@@ -393,7 +393,7 @@ export const api = {
       });
 
     return () => controller.abort();
-  }
+  },
 
   async getPlans(): Promise<Plan[]> {
     const response = await fetch(`${BASE_URL}/api/account/plans`, {
