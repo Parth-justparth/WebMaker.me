@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/preview/:projectId/(.*)",
-      "destination": "http://project-:projectId.previews.98.70.247.4.nip.io/preview/:projectId/$1"
+      "destination": "http://proxy.previews.98.70.247.4.nip.io/preview/:projectId/$1"
     },
     {
       "source": "/api/(.*)",
