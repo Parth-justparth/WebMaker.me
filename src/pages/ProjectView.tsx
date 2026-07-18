@@ -395,7 +395,7 @@ Please analyze this error and fix the code to resolve it.`;
           />
           {project?.role !== 'VIEWER' && (
             <>
-              <Button variant="outline" size="sm" className="h-8 text-xs">
+              <Button onClick={() => navigate("/plans")} variant="outline" size="sm" className="h-8 text-xs">
                 Upgrade
               </Button>
               <Button size="sm" className="h-8 text-xs bg-primary hover:bg-primary/90">

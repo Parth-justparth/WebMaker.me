@@ -396,23 +396,23 @@ export const api = {
   },
 
   async getPlans(): Promise<Plan[]> {
-    const response = await fetch(`${BASE_URL}/api/account/plans`, {
-      headers: { ...getAuthHeaders() },
+    const response = await fetch(`${BASE_URL}/api/v1/account/api/account/plans`, {
+      headers: getAuthHeaders(),
     });
     if (!response.ok) throw new Error("Failed to fetch plans");
     return response.json();
   },
 
-  async getSubscription(): Promise<Subscription> {
-    const response = await fetch(`${BASE_URL}/api/me/subscription`, {
-      headers: { ...getAuthHeaders() },
+  async getCurrentSubscription(): Promise<Subscription> {
+    const response = await fetch(`${BASE_URL}/api/v1/account/api/me/subscription`, {
+      headers: getAuthHeaders(),
     });
     if (!response.ok) throw new Error("Failed to fetch subscription");
     return response.json();
   },
 
   async checkout(planId: number): Promise<{ url: string }> {
-    const response = await fetch(`${BASE_URL}/api/payments/checkout`, {
+    const response = await fetch(`${BASE_URL}/api/v1/account/api/payments/checkout`, {
       method: "POST",
       headers: { "Content-Type": "application/json", ...getAuthHeaders() },
       body: JSON.stringify({ planId }),
