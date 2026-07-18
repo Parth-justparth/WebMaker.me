@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Plus, LogOut, Search, Folder, Loader2, MoreVertical, Trash, Download, Edit } from "lucide-react";
+import { Plus, LogOut, Search, Folder, Loader2, MoreVertical, Trash, Download, Edit, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -53,7 +53,11 @@ export function ProjectsDashboard() {
         setIsCreating(true);
         try {
             const newProject = await api.createProject(newProjectName);
-            setProjects([newProject, ...projects]);
+            if (newProject) {
+                setProjects([newProject, ...projects]);
+            } else {
+                await fetchProjects();
+            }
             setNewProjectName("");
             setIsDialogOpen(false);
             toast({
@@ -61,7 +65,7 @@ export function ProjectsDashboard() {
                 description: "Project created successfully",
             });
             // Optionally navigate to the new project immediately
-            // navigate(`/projects/${newProject.id}`);
+            // if (newProject) navigate(`/projects/${newProject.id}`);
         } catch (error) {
             console.error("Failed to create project:", error);
             toast({
@@ -175,6 +179,10 @@ export function ProjectsDashboard() {
                                     {getUserInfo()?.username || ""}
                                 </p>
                             </div>
+                            <DropdownMenuItem onClick={() => navigate("/plans")} className="cursor-pointer">
+                                <Sparkles className="w-4 h-4 mr-2 text-indigo-500" />
+                                Upgrade Plan
+                            </DropdownMenuItem>
                             <DropdownMenuItem onClick={handleLogout} className="text-red-600 focus:text-red-600 cursor-pointer">
                                 <LogOut className="w-4 h-4 mr-2" />
                                 Sign Out

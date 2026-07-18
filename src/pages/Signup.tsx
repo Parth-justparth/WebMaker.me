@@ -37,7 +37,7 @@ export default function Signup() {
                 title: "Welcome!",
                 description: "Account created successfully",
             });
-            navigate("/projects");
+            navigate("/plans");
         } catch (error) {
             toast({
                 title: "Signup failed",

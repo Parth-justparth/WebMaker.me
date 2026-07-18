@@ -106,3 +106,17 @@ export interface AuthResponse {
     plan?: any;
   };
 }
+export interface Plan {
+  id: number;
+  name: string;
+  maxProjects: number;
+  maxTokensPerDay: number;
+  maxPreviews: number;
+  unlimitedAi: boolean;
+}
+
+export interface Subscription {
+  status: string;
+  plan: Plan;
+}
+
