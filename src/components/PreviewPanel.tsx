@@ -16,7 +16,7 @@ interface PreviewPanelProps {
 export function PreviewPanel({ projectId, runtimeError, onDismiss, onFix }: PreviewPanelProps) {
   const [previewUrl, setPreviewUrl] = useState<string | null>(() => {
     // Load from localStorage on mount
-    return localStorage.getItem(PREVIEW_URL_KEY);
+    return localStorage.getItem(`${PREVIEW_URL_KEY}_${projectId}`);
   });
   const [isDeploying, setIsDeploying] = useState(false);
   const { toast } = useToast();
@@ -24,9 +24,9 @@ export function PreviewPanel({ projectId, runtimeError, onDismiss, onFix }: Prev
   // Store previewUrl in localStorage when it changes
   useEffect(() => {
     if (previewUrl) {
-      localStorage.setItem(PREVIEW_URL_KEY, previewUrl);
+      localStorage.setItem(`${PREVIEW_URL_KEY}_${projectId}`, previewUrl);
     }
-  }, [previewUrl]);
+  }, [previewUrl, projectId]);
 
   const handleDeploy = async () => {
     setIsDeploying(true);
