@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "http://api.98.70.247.4.nip.io/api/$1"
+    }
+  ]
+}
