@@ -92,6 +92,7 @@ export default {
         pulse: "pulse 1s ease-in-out infinite",
       },
       fontFamily: {
+        heading: ["'Plus Jakarta Sans'", "Inter", "sans-serif"],
         mono: ["JetBrains Mono", "Fira Code", "Monaco", "Consolas", "monospace"],
       },
     },

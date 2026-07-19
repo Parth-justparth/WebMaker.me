@@ -88,7 +88,7 @@ export default function PlansPage() {
   return (
     <div className="min-h-screen bg-background text-foreground py-20 px-4 relative overflow-hidden">
       {/* Header Navigation */}
-      <div className="fixed top-0 left-0 w-full p-4 flex justify-between items-center z-50 bg-background/80 backdrop-blur border-b border-border/30">
+      <div className="fixed top-0 left-0 w-full p-4 flex justify-between items-center z-50 bg-background/80 backdrop-blur-xl border-b border-border/30">
         <Button variant="ghost" onClick={() => navigate("/projects")} className="gap-2">
           <ArrowLeft className="w-4 h-4" />
           Back to Projects
@@ -97,11 +97,12 @@ export default function PlansPage() {
       </div>
 
       {/* Background Effects */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-primary/[0.08] blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-blue-900/[0.05] blur-[100px] rounded-full pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10 mt-8">
         <div className="text-center mb-10 space-y-3">
-          <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+          <h1 className="text-4xl md:text-6xl font-extrabold font-heading gradient-text">
             Choose Your Power Level
           </h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
@@ -112,10 +113,10 @@ export default function PlansPage() {
         {/* Current Subscription Banner */}
         {hasActiveSub && subscription?.plan && (
           <div className="mb-10 max-w-2xl mx-auto">
-            <div className="rounded-2xl border border-indigo-500/40 bg-indigo-500/10 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <div className="rounded-2xl border border-primary/30 bg-primary/[0.08] p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4 backdrop-blur-sm">
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-full bg-indigo-500/20">
-                  <Crown className="w-5 h-5 text-indigo-500" />
+                <div className="p-2 rounded-full bg-primary/20">
+                  <Crown className="w-5 h-5 text-primary" />
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Your Current Plan</p>
@@ -131,7 +132,7 @@ export default function PlansPage() {
                 <Button
                   onClick={handleManageSubscription}
                   variant="outline"
-                  className="border-indigo-500/40 text-indigo-500 hover:bg-indigo-500/10 gap-2"
+                  className="border-primary/30 text-primary hover:bg-primary/10 gap-2"
                 >
                   <Sparkles className="w-4 h-4" />
                   Manage Subscription
@@ -152,26 +153,26 @@ export default function PlansPage() {
                 key={plan.id}
                 className={`relative group rounded-3xl p-0.5 transition-all duration-300 hover:scale-[1.02] ${
                   isCurrent
-                    ? 'bg-gradient-to-b from-green-500 via-emerald-500 to-teal-500'
+                    ? 'bg-gradient-to-b from-emerald-400 via-emerald-500 to-teal-600'
                     : isFeatured
-                      ? 'bg-gradient-to-b from-indigo-500 via-purple-500 to-pink-500'
+                      ? 'bg-gradient-to-b from-blue-400 via-blue-600 to-blue-900'
                       : 'bg-border hover:bg-border/80'
                 }`}
               >
                 {/* Badge */}
                 {isCurrent ? (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-1 rounded-full text-sm font-semibold flex items-center gap-1 shadow-lg whitespace-nowrap">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-emerald-400 to-teal-500 text-white px-4 py-1 rounded-full text-sm font-semibold flex items-center gap-1 shadow-lg whitespace-nowrap">
                     <Crown className="w-3.5 h-3.5" /> Current Plan
                   </div>
                 ) : isFeatured ? (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-4 py-1 rounded-full text-sm font-semibold flex items-center gap-1 shadow-lg">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-400 to-blue-700 text-white px-4 py-1 rounded-full text-sm font-semibold flex items-center gap-1 shadow-lg">
                     <Sparkles className="w-3.5 h-3.5" /> Recommended
                   </div>
                 ) : null}
 
                 <div className="h-full bg-card rounded-[23px] p-8 flex flex-col border border-transparent">
                   <div className="mb-8">
-                    <h3 className="text-2xl font-bold text-card-foreground mb-2 flex items-center gap-2">
+                    <h3 className="text-2xl font-bold text-card-foreground mb-2 flex items-center gap-2 font-heading">
                       {plan.name}
                       {plan.unlimitedAi && <Zap className="w-5 h-5 text-yellow-500" />}
                     </h3>
@@ -197,12 +198,12 @@ export default function PlansPage() {
                   <Button
                     onClick={() => isCurrent ? handleManageSubscription() : handleCheckout(plan)}
                     disabled={processingId !== null && processingId !== plan.id}
-                    className={`w-full mt-8 h-12 rounded-xl font-semibold transition-all ${
+                    className={`w-full mt-8 h-12 rounded-xl font-semibold transition-all duration-300 ${
                       isCurrent
-                        ? 'bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-400 hover:to-emerald-400 text-white shadow-lg border-0'
+                        ? 'bg-gradient-to-r from-emerald-400 to-teal-500 hover:from-emerald-300 hover:to-teal-400 text-white shadow-lg border-0'
                         : plan.name.toLowerCase().includes('free')
                           ? 'bg-secondary hover:bg-secondary/80 text-secondary-foreground border-0'
-                          : 'bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-400 hover:to-purple-400 text-white shadow-lg shadow-indigo-500/25 border-0'
+                          : 'bg-gradient-to-r from-blue-400 via-blue-600 to-blue-900 hover:from-blue-300 hover:via-blue-500 hover:to-blue-800 text-white shadow-lg shadow-blue-500/20 border-0'
                     }`}
                   >
                     {processingId === plan.id ? (
@@ -236,10 +237,10 @@ export default function PlansPage() {
 function Feature({ text, highlight = false }: { text: string; highlight?: boolean }) {
   return (
     <div className="flex items-center gap-3">
-      <div className={`p-1 rounded-full flex-shrink-0 ${highlight ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white' : 'bg-secondary text-secondary-foreground'}`}>
+      <div className={`p-1 rounded-full flex-shrink-0 ${highlight ? 'bg-gradient-to-r from-blue-400 to-blue-800 text-white' : 'bg-secondary text-secondary-foreground'}`}>
         <Check className="w-3 h-3" />
       </div>
-      <span className={highlight ? 'text-indigo-500 dark:text-indigo-300 font-medium' : 'text-muted-foreground'}>
+      <span className={highlight ? 'text-primary dark:text-blue-300 font-medium' : 'text-muted-foreground'}>
         {text}
       </span>
     </div>

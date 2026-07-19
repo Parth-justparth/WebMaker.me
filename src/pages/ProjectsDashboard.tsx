@@ -168,11 +168,9 @@ export function ProjectsDashboard() {
             {/* Header */}
             <header className="border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
                 <div className="container flex h-14 max-w-screen-2xl items-center justify-between px-4 sm:px-8">
-                    <div className="flex items-center gap-2 font-bold text-lg">
-                        <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
-                            <Folder className="w-5 h-5 text-primary" />
-                        </div>
-                        Project Companion
+                    <div className="flex items-center gap-2.5 font-bold text-lg">
+                        <img src="/webmaker-logo.png" alt="WebMaker" className="w-8 h-8 drop-shadow-sm" />
+                        <span className="font-heading gradient-text">WebMaker</span>
                     </div>
                     <div className="flex items-center gap-2">
                         <ThemeToggle />
@@ -202,7 +200,7 @@ export function ProjectsDashboard() {
                                     </p>
                                 </div>
                                 <DropdownMenuItem onClick={() => navigate("/plans")} className="cursor-pointer">
-                                    <Sparkles className="w-4 h-4 mr-2 text-indigo-500" />
+                                    <Sparkles className="w-4 h-4 mr-2 text-primary" />
                                     Upgrade Plan
                                 </DropdownMenuItem>
                                 <DropdownMenuItem onClick={handleManageSubscription} className="cursor-pointer">

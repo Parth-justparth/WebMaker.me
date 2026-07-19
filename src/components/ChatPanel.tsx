@@ -122,7 +122,7 @@ export function ChatPanel({ messages, onSendMessage, isStreaming, isLoading, rea
 
         <div className="flex items-center justify-between mt-2 px-1">
           <div className="flex items-center gap-1 text-xs text-muted-foreground">
-            <span>✨ AI-Powered Design System</span>
+            <span>✨ WebMaker AI</span>
           </div>
           {isStreaming && (
             <span className="text-xs text-muted-foreground flex items-center gap-1 font-medium">

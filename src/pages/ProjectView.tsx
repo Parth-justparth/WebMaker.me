@@ -309,9 +309,7 @@ Please analyze this error and fix the code to resolve it.`;
             </>
           ) : (
             <>
-              <div className="w-7 h-7 rounded-lg bg-primary/20 flex items-center justify-center">
-                <Sparkles className="w-3.5 h-3.5 text-primary" />
-              </div>
+              <img src="/webmaker-logo.png" alt="WebMaker" className="w-7 h-7 drop-shadow-sm" />
               <span className="font-semibold text-sm">Loading...</span>
             </>
           )}
