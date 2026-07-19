@@ -168,7 +168,7 @@ export function ProjectsDashboard() {
             {/* Header */}
             <header className="border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
                 <div className="container flex h-14 max-w-screen-2xl items-center justify-between px-4 sm:px-8">
-                    <div className="flex items-center gap-2.5 font-bold text-lg">
+                    <div className="flex items-center gap-2.5 font-bold text-lg cursor-pointer" onClick={() => navigate("/projects")}>
                         <img src="/webmaker-logo.png" alt="WebMaker" className="w-8 h-8 drop-shadow-sm" />
                         <span className="font-heading gradient-text">WebMaker</span>
                     </div>

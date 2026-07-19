@@ -83,7 +83,7 @@ export default function PlansPage() {
   }
 
   const isCurrentPlan = (plan: Plan) => subscription?.plan?.id === plan.id;
-  const hasActiveSub = subscription?.status === "ACTIVE" || subscription?.status === "TRIALING";
+  const hasActiveSub = subscription?.status?.toLowerCase() === "active" || subscription?.status?.toLowerCase() === "trialing";
 
   return (
     <div className="min-h-screen bg-background text-foreground py-20 px-4 relative overflow-hidden">

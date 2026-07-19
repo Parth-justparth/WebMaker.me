@@ -5,7 +5,7 @@
 @layer base {
   /* ─── Light Theme (Off-White) ─── */
   :root {
-    --background: 225 40% 98%;
+    --background: 220 14% 96%;
     --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
@@ -21,7 +21,7 @@
     --secondary-foreground: 217 33% 17%;
 
     --muted: 218 25% 95%;
-    --muted-foreground: 215 16% 47%;
+    --muted-foreground: 215 20% 40%;
 
     --accent: 214 93% 93%;
     --accent-foreground: 224 71% 40%;
@@ -36,9 +36,9 @@
     --radius: 0.75rem;
 
     /* Custom tokens (Light Mode) */
-    --panel: 225 33% 97%;
-    --panel-hover: 218 30% 93%;
-    --panel-active: 218 30% 89%;
+    --panel: 220 12% 95%;
+    --panel-hover: 218 18% 91%;
+    --panel-active: 218 18% 87%;
     --chat-user: 217 80% 95%;
     --chat-ai: 222 40% 96%;
     --file-active: 217 80% 92%;
@@ -50,9 +50,9 @@
     --gradient-primary: linear-gradient(135deg, hsl(210 100% 65%) 0%, hsl(217 91% 55%) 50%, hsl(222 53% 30%) 100%);
     --gradient-panel: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(225 40% 97%) 100%);
     --gradient-subtle: linear-gradient(135deg, hsl(217 83% 53% / 0.05) 0%, hsl(222 53% 30% / 0.05) 100%);
-    --shadow-glow: 0 0 30px hsl(217 83% 53% / 0.08);
-    --shadow-panel: 0 4px 24px hsl(222 47% 11% / 0.04);
-    --shadow-card: 0 1px 3px hsl(222 47% 11% / 0.06), 0 8px 32px hsl(222 47% 11% / 0.04);
+    --shadow-glow: 0 0 30px hsl(217 83% 53% / 0.1);
+    --shadow-panel: 0 4px 24px hsl(222 47% 11% / 0.06);
+    --shadow-card: 0 1px 3px hsl(222 47% 11% / 0.08), 0 8px 32px hsl(222 47% 11% / 0.06);
   }
 
   /* ─── Dark Theme (Ultra-Black) ─── */
