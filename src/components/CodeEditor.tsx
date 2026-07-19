@@ -3,7 +3,8 @@ import { javascript } from '@codemirror/lang-javascript';
 import { json } from '@codemirror/lang-json';
 import { css } from '@codemirror/lang-css';
 import { FileCode, Loader2 } from "lucide-react";
-import {githubDark} from '@uiw/codemirror-theme-github';
+import { githubDark, githubLight } from '@uiw/codemirror-theme-github';
+import { useTheme } from "next-themes";
 
 interface CodeEditorProps {
   content: string;
@@ -13,6 +14,9 @@ interface CodeEditorProps {
 }
 
 export function CodeEditor({ content, filePath, isLoading, onCodeChange }: CodeEditorProps) {
+  const { theme } = useTheme();
+  const editorTheme = theme === 'light' ? githubLight : githubDark;
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-full">
@@ -53,11 +57,11 @@ export function CodeEditor({ content, filePath, isLoading, onCodeChange }: CodeE
   };
 
   return (
-    <div className="h-full w-full overflow-hidden border-l">
+    <div className="h-full w-full overflow-hidden border-l border-border/50 bg-background">
       <CodeMirror
         value={content}
         height="100%"
-        theme={githubDark}
+        theme={editorTheme}
         editable={false}
         extensions={getLanguage(filePath)}
         onChange={(value) => onCodeChange?.(value)}
